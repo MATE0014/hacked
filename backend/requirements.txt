@@ -1,0 +1,17 @@
+fastapi>=0.115.0
+uvicorn[standard]>=0.35.0
+pydantic>=2.10.0
+pandas>=2.3.0
+openpyxl>=3.1.5
+numpy>=2.2.0
+scipy>=1.15.0
+statsmodels>=0.14.0
+groq>=0.31.0
+python-dotenv>=1.1.0
+python-multipart>=0.0.20
+reportlab>=4.2.2
+motor>=3.6.0
+pymongo>=4.9.0
+langchain
+langchain-experimental
+langchain-groq
