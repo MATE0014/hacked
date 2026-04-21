@@ -56,7 +56,7 @@ function NavLink({
       <TooltipTrigger asChild>
         <Link
           href={item.href}
-          className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
+          className={`group relative flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-heading font-medium tracking-wide transition-all duration-200 ${
             isActive
               ? "bg-brand-teal/15 text-white"
               : "text-[#938EA0] hover:bg-white/[0.04] hover:text-[#CAC4D7]"
@@ -148,7 +148,7 @@ function SidebarContent({ collapsed }: { collapsed?: boolean }) {
               </Avatar>
               {!collapsed && (
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-sm font-medium text-white">
+                  <p className="truncate text-sm font-heading font-medium tracking-wide text-white">
                     Admin User
                   </p>
                   <p className="truncate text-xs text-[#938EA0]">
@@ -219,7 +219,7 @@ export default function DashboardLayout({
         </header>
 
         {/* Page Content */}
-        <main className="scrollbar-brand flex-1 overflow-y-auto">
+        <main className="scrollbar-brand flex-1 overflow-y-auto scroll-smooth">
           <AnimatePresence mode="wait">
             <motion.div
               key={pathname}

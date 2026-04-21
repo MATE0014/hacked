@@ -291,14 +291,23 @@ export default function AnalysisResults({ data }: AnalysisResultsProps) {
 
   return (
     <Tabs value={activeTab} onValueChange={handleTabChange}>
-      <TabsList variant="line" className="mb-3 bg-transparent">
-        <TabsTrigger value="overview" className="text-[#CAC4D7] data-[state=active]:text-white">
+      <TabsList className="mb-6 inline-flex h-auto w-auto flex-wrap items-center justify-center gap-1.5 rounded-full border border-border bg-[#1A1B20]/80 p-1.5 shadow-sm backdrop-blur-sm sm:flex-nowrap">
+        <TabsTrigger 
+          value="overview" 
+          className="rounded-full px-6 py-2.5 text-sm font-heading font-medium tracking-wide text-[#CAC4D7] transition-all hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm"
+        >
           Overview
         </TabsTrigger>
-        <TabsTrigger value="anomalies" className="text-[#CAC4D7] data-[state=active]:text-white">
+        <TabsTrigger 
+          value="anomalies" 
+          className="rounded-full px-6 py-2.5 text-sm font-heading font-medium tracking-wide text-[#CAC4D7] transition-all hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm"
+        >
           Anomalies
         </TabsTrigger>
-        <TabsTrigger value="report" className="text-[#CAC4D7] data-[state=active]:text-white">
+        <TabsTrigger 
+          value="report" 
+          className="rounded-full px-6 py-2.5 text-sm font-heading font-medium tracking-wide text-[#CAC4D7] transition-all hover:text-white data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:shadow-sm"
+        >
           Report
         </TabsTrigger>
       </TabsList>

@@ -1,5 +1,6 @@
 "use client";
-import { useRef } from "react";
+import { animate, type AnimationPlaybackControls } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -64,9 +65,44 @@ const capabilities = [
 export default function AnalyticsPage() {
   const router = useRouter();
   const featuresRef = useRef<HTMLDivElement>(null);
+  const scrollAnimationRef = useRef<AnimationPlaybackControls | null>(null);
+
+  useEffect(() => {
+    return () => {
+      scrollAnimationRef.current?.stop();
+    };
+  }, []);
 
   const scrollToFeatures = () => {
-    featuresRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const featuresEl = featuresRef.current;
+    const mainContent = document.querySelector("main");
+
+    if (!(featuresEl && mainContent instanceof HTMLElement)) {
+      featuresEl?.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    scrollAnimationRef.current?.stop();
+
+    const maxScrollTop = mainContent.scrollHeight - mainContent.clientHeight;
+
+    const from = Math.max(0, Math.min(mainContent.scrollTop, maxScrollTop));
+    const to = maxScrollTop;
+    const distance = Math.abs(to - from);
+    const pixelsPerSecond = 1400;
+    const duration = Math.max(0.6, Math.min(2.4, distance / pixelsPerSecond));
+
+    scrollAnimationRef.current = animate(from, to, {
+      duration,
+      ease: [0.22, 1, 0.36, 1],
+      onUpdate: (latest) => {
+        mainContent.scrollTop = latest;
+      },
+      onComplete: () => {
+        mainContent.scrollTop = to;
+        scrollAnimationRef.current = null;
+      },
+    });
   };
 
   return (
@@ -111,7 +147,7 @@ export default function AnalyticsPage() {
         </button>
       </div>
 
-      <div ref={featuresRef} style={{ marginBottom: 24 }}>
+      <div ref={featuresRef} style={{ marginBottom: 24, scrollMarginTop: 24 }}>
         <h3
           style={{
             marginTop: 16,
